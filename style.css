@@ -10,9 +10,11 @@ body {
 }
 
 .game-board-container {
-    margin: 50px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 .game-board {
@@ -26,3 +28,17 @@ body {
     background-color: rgb(124, 243, 209);
 }
 
+.button-container {
+    display: flex;
+    gap: 15px;
+}
+
+.button {
+    padding: 4px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+}
