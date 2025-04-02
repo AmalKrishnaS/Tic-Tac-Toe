@@ -1,0 +1,28 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+}
+
+html, 
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.game-board-container {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 2px;
+}
+
+.game-board-cell {
+    background-color: rgb(124, 243, 209);
+}
+
