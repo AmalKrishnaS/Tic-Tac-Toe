@@ -3,6 +3,7 @@ const gameBoard = (function () {
     let moveTracker = 0;
     let playerOneName = '';
     let playerTwoName = '';
+    let result = '';
     
     const board = ['-', '-', '-', '-', '-', '-', '-', '-', '-'];
 
@@ -38,24 +39,29 @@ const gameBoard = (function () {
                                                
                ) {
                     if (moveTracker % 2 === 1) {
-                        result = `${player1} won the game`;
+                        result = 'X';
                         resetGame();
                         return;
 
                     }
                     else {
-                        result = `${player2} won the game`;
+                        result = 'O';
                         resetGame();
                         return;
                     }
                  }
             else if (moveTracker === 9) {
-                result = 'Game drawn';
+                result = 'draw';
                 resetGame();
                 return;
             }
 
         }
+    }
+
+    function getResult() {
+        const gameResult = result;
+        return gameResult;
     }
 
     function resetGame() {
@@ -65,7 +71,7 @@ const gameBoard = (function () {
         board.fill('-');
     }
 
-    return {board, makeMove, setPlayerNames, getPlayerNames};
+    return {board, makeMove, setPlayerNames, getPlayerNames, getResult};
 })();
 
 const displayController = ( function () {
