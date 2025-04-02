@@ -54,3 +54,14 @@ body {
 h1 {
     text-align: center;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-button-container {
+    display: flex;
+    justify-content: space-between;
+}

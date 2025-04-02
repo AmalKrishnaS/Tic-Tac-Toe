@@ -60,7 +60,6 @@ const gameBoard = (function () {
 const displayController = ( function () {
     function render () {
         const [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth] = gameBoard.board;
-        console.table([[first, second, third], [fourth, fifth, sixth], [seventh, eighth, ninth], ]);
     }
     return {render}; 
 })();
