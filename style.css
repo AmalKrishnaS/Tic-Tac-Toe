@@ -39,6 +39,18 @@ body {
     font-weight: bold;
 }
 
+.players-name-button {
+    background-color: lightsalmon;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.reset-button {
+    background-color: lightskyblue;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
 h1 {
     text-align: center;
 }
