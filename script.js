@@ -5,7 +5,7 @@ const gameBoard = (function () {
     let playerTwoName = '';
     let result = '';
     
-    const board = ['-', '-', '-', '-', '-', '-', '-', '-', '-'];
+    const board = [];
 
     function setPlayerNames(firstPlayerName, secondPlayerName) {
         playerOneName = firstPlayerName;
