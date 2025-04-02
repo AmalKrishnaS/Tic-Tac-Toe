@@ -1,10 +1,21 @@
 const gameBoard = (function () {
 
     let moveTracker = 0;
-    let player1 = '';
-    let player2 = '';
+    let playerOneName = '';
+    let playerTwoName = '';
     
     const board = ['-', '-', '-', '-', '-', '-', '-', '-', '-'];
+
+    function setPlayerNames(firstPlayerName, secondPlayerName) {
+        playerOneName = firstPlayerName;
+        playerTwoName = secondPlayerName;
+    }
+
+    function getPlayerNames() {
+        const firstPlayerName = playerOneName;
+        const secondPlayerName = playerTwoName;
+        return {firstPlayerName, secondPlayerName};
+    }
 
     function makeMove(position, symbol) {
         board[position - 1] = symbol;
@@ -54,7 +65,7 @@ const gameBoard = (function () {
         board.fill('-');
     }
 
-    return {board, makeMove};
+    return {board, makeMove, setPlayerNames, getPlayerNames};
 })();
 
 const displayController = ( function () {
