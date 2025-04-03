@@ -5,7 +5,7 @@ const gameBoard = (function () {
     let playerTwoName = '';
     let result = '';
     
-    const board = [];
+    const board = ['', '', '', '', '', '', '', '', '',];
 
     function setPlayerNames(firstPlayerName, secondPlayerName) {
         playerOneName = firstPlayerName;
@@ -26,18 +26,29 @@ const gameBoard = (function () {
         resultChecker();
     }
 
+    function checkWinner() {
+        const winningCombination = [
+                                        [board[0], board[1], board[2]],
+                                        [board[3], board[4], board[5]],
+                                        [board[6], board[7], board[8]],
+                                        [board[0], board[3], board[6]],
+                                        [board[1], board[4], board[7]],
+                                        [board[2], board[5], board[8]],
+                                        [board[0], board[4], board[8]],
+                                        [board[2], board[4], board[6]],
+                                   ];
+        
+        const isWinner = winningCombination.some(
+            (a, b, c) => a !== '' && a === b && b === c
+        );
+
+        return isWinner;
+    }
+
     function resultChecker() {
         if (moveTracker > 4) {
-            if (board[0] === board[1] && board[1] === board[2] ||
-                board[3] === board[4] && board[4] === board[5] ||
-                board[6] === board[7] && board[7] === board[8] ||
-                board[0] === board[3] && board[3] === board[6] ||
-                board[1] === board[4] && board[4] === board[7] ||
-                board[2] === board[5] && board[5] === board[8] ||
-                board[0] === board[4] && board[4] === board[8] ||
-                board[2] === board[4] && board[4] === board[6]
-                                               
-               ) {
+            let isWinner = checkWinner();
+            if (isWinner) {
                     if (moveTracker % 2 === 1) {
                         result = 'X';
                         resetGame();
@@ -75,8 +86,15 @@ const gameBoard = (function () {
 })();
 
 const displayController = ( function () {
-    function render () {
-        const [first, second, third, fourth, fifth, sixth, seventh, eighth, ninth] = gameBoard.board;
-    }
-    return {render}; 
+    const board = document.querySelector('.game-board');
+    const resetButton = document.querySelector('.reset-button');
+    const playerNamesButton = document.querySelector('.players-name-button');
+    const formDialog = document.querySelector('.form');
+    const formCloseButton = formDialog.querySelector('.close-button');
+    const resultDialog = document.querySelector('.result-dialog');
+    const resultCloseButton = resultDialog.querySelector('.close-button');
+
+    board.addEventListener('click', (event) => {
+        const cell = event.target;
+    });
 })();
