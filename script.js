@@ -18,11 +18,22 @@ const gameBoard = (function () {
         return {firstPlayerName, secondPlayerName};
     }
 
-    function makeMove(position, symbol) {
-        board[position - 1] = symbol;
+    function getMoveTracker() {
+        let gameMoveTracker = moveTracker;
+        return gameMoveTracker;
+    }
+
+    function makeMove(position) {
+
+        if (gameBoard.getMoveTracker() % 2 === 0) {
+            board[position - 1] = 'X';       
+        }
+        else if (gameBoard.getMoveTracker() % 2 === 1) {
+            board[position - 1] = 'O'; 
+        }  
+        displayController.boardCells[position - 1].textContent = board[position - 1];
 
         moveTracker++;
-        displayController.render();
         resultChecker();
     }
 
@@ -39,7 +50,7 @@ const gameBoard = (function () {
                                    ];
         
         const isWinner = winningCombination.some(
-            (a, b, c) => a !== '' && a === b && b === c
+            ([a, b, c]) => a !== '' && a === b && b === c
         );
 
         return isWinner;
@@ -79,14 +90,18 @@ const gameBoard = (function () {
         player1 = '';
         player2 = '';
         moveTracker = 0;
-        board.fill('-');
+        board.fill('');
+        for (let i=0; i<board.length; i++) {
+            displayController.boardCells[i].textContent = board[i];
+        };
     }
 
-    return {board, makeMove, setPlayerNames, getPlayerNames, getResult};
+    return {board, getMoveTracker, makeMove, setPlayerNames, getPlayerNames, getResult};
 })();
 
 const displayController = ( function () {
     const board = document.querySelector('.game-board');
+    const boardCells = document.querySelectorAll('.game-board-cell');
     const resetButton = document.querySelector('.reset-button');
     const playerNamesButton = document.querySelector('.players-name-button');
     const formDialog = document.querySelector('.form');
@@ -96,5 +111,9 @@ const displayController = ( function () {
 
     board.addEventListener('click', (event) => {
         const cell = event.target;
+        const position = cell.getAttribute('data-position');
+        gameBoard.makeMove(position);    
     });
+
+    return {boardCells};
 })();
