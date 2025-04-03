@@ -26,6 +26,10 @@ body {
 
 .game-board-cell {
     background-color: rgb(124, 243, 209);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
 }
 
 .button-container {
