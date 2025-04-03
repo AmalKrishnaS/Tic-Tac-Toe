@@ -34,7 +34,7 @@ const gameBoard = (function () {
         displayController.boardCells[position - 1].textContent = board[position - 1];
 
         moveTracker++;
-        resultChecker();
+        setTimeout(resultChecker, 300);
     }
 
     function checkWinner() {
