@@ -105,7 +105,6 @@ const displayController = ( function () {
     const resetButton = document.querySelector('.reset-button');
     const playerNamesButton = document.querySelector('.players-name-button');
     const formDialog = document.querySelector('.form-dialog');
-    const formCloseButton = formDialog.querySelector('.close-button');
     const resultDialog = document.querySelector('.result-dialog');
     const resultCloseButton = resultDialog.querySelector('.close-button');
     const submitButton = formDialog.querySelector('.submit-button');
