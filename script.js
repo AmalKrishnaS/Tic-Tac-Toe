@@ -53,23 +53,16 @@ const gameBoard = (function () {
     };
 
     function checkWinner() {
-        const winningCombination = [
-                                        [board[0], board[1], board[2]],
-                                        [board[3], board[4], board[5]],
-                                        [board[6], board[7], board[8]],
-                                        [board[0], board[3], board[6]],
-                                        [board[1], board[4], board[7]],
-                                        [board[2], board[5], board[8]],
-                                        [board[0], board[4], board[8]],
-                                        [board[2], board[4], board[6]],
-                                   ];
-        
-        const isWinner = winningCombination.some(
-            ([a, b, c]) => a !== '' && a === b && b === c
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+    
+        return winPatterns.some(([a, b, c]) => 
+            board[a] && board[a] === board[b] && board[a] === board[c]
         );
-
-        return isWinner;
-    };
+    }
 
     function checkGameStatus() {
         if (moveTracker > 4) {
@@ -168,7 +161,6 @@ const displayController = ( function () {
 
         const inputList = formDialog.querySelectorAll('.input');
         gameBoard.setPlayerNames(inputList[0].value, inputList[1].value);
-        console.log(gameBoard.getPlayerNames().firstPlayerName);
         form.reset();
         formDialog.close();       
     });
