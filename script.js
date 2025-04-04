@@ -36,6 +36,8 @@ const gameBoard = (function () {
 
     function makeMove(position) {
 
+        if (board[position - 1] !== '') return;
+
         if (gameBoard.getMoveTracker() % 2 === 0) {
             board[position - 1] = 'X';       
         }
