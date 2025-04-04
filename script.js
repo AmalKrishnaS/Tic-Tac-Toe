@@ -3,7 +3,6 @@ const gameBoard = (function () {
     let moveTracker = 0;
     let playerOneName = '';
     let playerTwoName = '';
-    let result = '';
     
     const board = ['', '', '', '', '', '', '', '', '',];
 
@@ -66,14 +65,12 @@ const gameBoard = (function () {
             let isWinner = checkWinner();
             if (isWinner) {
                     if (moveTracker % 2 === 1) {
-                        result = 'X';
                         displayResult(playerOneName);
                         resetBoard();
                         return;
 
                     }
                     else {
-                        result = 'O';
                         displayResult(playerTwoName);
                         resetBoard();
                         return;
@@ -86,11 +83,6 @@ const gameBoard = (function () {
             }
 
         }
-    }
-
-    function getResult() {
-        const gameResult = result;
-        return gameResult;
     }
 
     function displayResult(winner) {
