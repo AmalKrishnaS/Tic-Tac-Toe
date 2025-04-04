@@ -9,23 +9,23 @@ const gameBoard = (function () {
     function setPlayerNames(firstPlayerName, secondPlayerName) {
         playerOneName = firstPlayerName;
         playerTwoName = secondPlayerName;
-    }
+    };
 
     function getPlayerNames() {
         const firstPlayerName = playerOneName;
         const secondPlayerName = playerTwoName;
         return {firstPlayerName, secondPlayerName};
-    }
+    };
 
     function resetPlayerNames() {
         playerOneName = '';
         playerTwoName = '';
-    }
+    };
 
     function getMoveTracker() {
         let gameMoveTracker = moveTracker;
         return gameMoveTracker;
-    }
+    };
 
     function makeMove(position) {
 
@@ -39,7 +39,7 @@ const gameBoard = (function () {
 
         moveTracker++;
         setTimeout(resultChecker, 300);
-    }
+    };
 
     function checkWinner() {
         const winningCombination = [
@@ -58,7 +58,7 @@ const gameBoard = (function () {
         );
 
         return isWinner;
-    }
+    };
 
     function resultChecker() {
         if (moveTracker > 4) {
@@ -83,7 +83,7 @@ const gameBoard = (function () {
             }
 
         }
-    }
+    };
 
     function displayResult(winner) {
         if (winner === '') {
@@ -96,7 +96,7 @@ const gameBoard = (function () {
         }
         displayController.resultDiv.textContent = `${winner} won the game`;
         displayController.showResult();
-    }
+    };
 
     function resetBoard() {
         moveTracker = 0;
@@ -104,7 +104,7 @@ const gameBoard = (function () {
         for (let i=0; i<board.length; i++) {
             displayController.boardCells[i].textContent = board[i];
         };
-    }
+    };
 
     return {board, getMoveTracker, makeMove, setPlayerNames, getPlayerNames, getResult, resetPlayerNames};
 })();
