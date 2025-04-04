@@ -108,6 +108,8 @@ const displayController = ( function () {
     const formCloseButton = formDialog.querySelector('.close-button');
     const resultDialog = document.querySelector('.result-dialog');
     const resultCloseButton = resultDialog.querySelector('.close-button');
+    const submitButton = formDialog.querySelector('.submit-button');
+    const form = formDialog.querySelector('.form');
 
     board.addEventListener('click', (event) => {
         const cell = event.target;
@@ -116,9 +118,17 @@ const displayController = ( function () {
     });
 
     playerNamesButton.addEventListener('click', (event) => {
+        formDialog.showModal();
+    });
+
+    submitButton.addEventListener('click',(event) => {
         event.preventDefault();
 
-        formDialog.showModal();
+        const inputList = formDialog.querySelectorAll('.input');
+        gameBoard.setPlayerNames(inputList[0].value, inputList[1].value);
+        console.log(gameBoard.getPlayerNames().firstPlayerName);
+        form.reset();
+        formDialog.close();       
     });
 
     return {boardCells};
