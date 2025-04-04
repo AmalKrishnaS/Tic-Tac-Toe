@@ -151,15 +151,15 @@ const displayController = ( function () {
 
     function showResult() {
         resultDialog.showModal();
-    }
+    };
 
     resultCloseButton.addEventListener('click', () => {
         resultDialog.close();
-    })
+    });
 
     resetButton.addEventListener('click', () => {
         gameBoard.resetPlayerNames();
-    })
+    });
 
     return {boardCells, resultDiv, showResult};
 })();
