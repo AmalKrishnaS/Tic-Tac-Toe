@@ -62,12 +62,14 @@ const gameBoard = (function () {
             if (isWinner) {
                     if (moveTracker % 2 === 1) {
                         result = 'X';
+                        displayResult(playerOneName);
                         resetGame();
                         return;
 
                     }
                     else {
                         result = 'O';
+                        displayResult(playerTwoName);
                         resetGame();
                         return;
                     }
@@ -84,6 +86,10 @@ const gameBoard = (function () {
     function getResult() {
         const gameResult = result;
         return gameResult;
+    }
+
+    function displayResult(winner) {
+        displayController.result.textContent = `${winner} won the game`;
     }
 
     function resetGame() {
@@ -106,6 +112,7 @@ const displayController = ( function () {
     const playerNamesButton = document.querySelector('.players-name-button');
     const formDialog = document.querySelector('.form-dialog');
     const resultDialog = document.querySelector('.result-dialog');
+    const resultDiv = resultDialog.querySelector('.result');
     const resultCloseButton = resultDialog.querySelector('.close-button');
     const submitButton = formDialog.querySelector('.submit-button');
     const form = formDialog.querySelector('.form');
@@ -130,5 +137,7 @@ const displayController = ( function () {
         formDialog.close();       
     });
 
-    return {boardCells};
+
+
+    return {boardCells, result};
 })();
