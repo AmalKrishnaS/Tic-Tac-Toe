@@ -89,7 +89,16 @@ const gameBoard = (function () {
     }
 
     function displayResult(winner) {
+        if (winner === '') {
+            if (moveTracker % 2 === 0){
+                winner = 'X';
+            }
+            else {
+                winner = 'O';
+            }
+        }
         displayController.resultDiv.textContent = `${winner} won the game`;
+        displayController.showResult();
     }
 
     function resetGame() {
@@ -137,5 +146,9 @@ const displayController = ( function () {
         formDialog.close();       
     });
 
-    return {boardCells, resultDiv};
+    function showResult() {
+        resultDialog.showModal();
+    }
+
+    return {boardCells, resultDiv, showResult};
 })();
