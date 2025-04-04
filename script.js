@@ -86,7 +86,7 @@ const gameBoard = (function () {
                     }
                  }
             else if (moveTracker === 9) {
-                result = 'draw';
+                displayResult('draw');
                 resetBoard();
                 return;
             }
@@ -94,16 +94,24 @@ const gameBoard = (function () {
         }
     };
 
-    function displayResult(winner) {
-        if (winner === '') {
-            if (moveTracker % 2 === 0){
-                winner = 'X';
+    function displayResult(result) {
+        if (result === '') {
+            if (moveTracker % 2 === 1){
+                result = 'X';
+                displayController.resultDiv.textContent = `${result} won the game`;
             }
             else {
-                winner = 'O';
+                result = 'O';
+                displayController.resultDiv.textContent = `${result} won the game`;
             }
         }
-        displayController.resultDiv.textContent = `${winner} won the game`;
+        else if (result === 'draw') {
+            displayController.resultDiv.textContent = `The game is Draw`;
+        }
+        else {
+            displayController.resultDiv.textContent = `${result} won the game`;
+        }
+
         if (playerOneName === '') {
             playerOneName = 'X';    
         }
