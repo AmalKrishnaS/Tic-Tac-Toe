@@ -150,5 +150,9 @@ const displayController = ( function () {
         resultDialog.showModal();
     }
 
+    resultCloseButton.addEventListener('click', () => {
+        resultDialog.close();
+    })
+
     return {boardCells, resultDiv, showResult};
 })();

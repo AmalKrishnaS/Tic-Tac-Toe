@@ -86,3 +86,7 @@ h1 {
     align-items: center;
     text-align: center;
 }
+
+.result-container .close-button {
+    border: 1px solid black;
+}
