@@ -49,7 +49,7 @@ const gameBoard = (function () {
         displayController.boardCells[position - 1].textContent = board[position - 1];
 
         moveTracker++;
-        setTimeout(resultChecker, 1000);
+        setTimeout(checkGameStatus, 1000);
     };
 
     function checkWinner() {
@@ -71,7 +71,7 @@ const gameBoard = (function () {
         return isWinner;
     };
 
-    function resultChecker() {
+    function checkGameStatus() {
         if (moveTracker > 4) {
             let isWinner = checkWinner();
             if (isWinner) {
@@ -102,18 +102,18 @@ const gameBoard = (function () {
         if (result === '') {
             if (moveTracker % 2 === 1){
                 result = 'X';
-                displayController.resultDiv.textContent = `${result} won the game`;
+                displayController.resultMessage.textContent = `${result} won the game`;
             }
             else {
                 result = 'O';
-                displayController.resultDiv.textContent = `${result} won the game`;
+                displayController.resultMessage.textContent = `${result} won the game`;
             }
         }
         else if (result === 'draw') {
-            displayController.resultDiv.textContent = `The game is Draw`;
+            displayController.resultMessage.textContent = `The game is Draw`;
         }
         else {
-            displayController.resultDiv.textContent = `${result} won the game`;
+            displayController.resultMessage.textContent = `${result} won the game`;
         }
 
         if (playerOneName === '') {
@@ -147,7 +147,7 @@ const displayController = ( function () {
     const playerNamesButton = document.querySelector('.players-name-button');
     const formDialog = document.querySelector('.form-dialog');
     const resultDialog = document.querySelector('.result-dialog');
-    const resultDiv = resultDialog.querySelector('.result');
+    const resultMessage = resultDialog.querySelector('.result');
     const scoreDivList = resultDialog.querySelectorAll('.score');
     const resultCloseButton = resultDialog.querySelector('.close-button');
     const submitButton = formDialog.querySelector('.submit-button');
@@ -191,5 +191,5 @@ const displayController = ( function () {
         gameBoard.resetPlayerScores();
     });
 
-    return {boardCells, resultDiv, showResult, getScoreDivList};
+    return {boardCells, resultMessage, showResult, getScoreDivList};
 })();
