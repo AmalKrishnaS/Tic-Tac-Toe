@@ -3,6 +3,8 @@ const gameBoard = (function () {
     let moveTracker = 0;
     let playerOneName = '';
     let playerTwoName = '';
+    let playerOneScore = 0;
+    let playerTwoScore = 0;
     
     const board = ['', '', '', '', '', '', '', '', '',];
 
@@ -21,6 +23,11 @@ const gameBoard = (function () {
         playerOneName = '';
         playerTwoName = '';
     };
+
+    function resetPlayerScores() {
+        playerOneScore = 0;
+        playerTwoScore = 0;
+    }
 
     function getMoveTracker() {
         let gameMoveTracker = moveTracker;
@@ -65,12 +72,14 @@ const gameBoard = (function () {
             let isWinner = checkWinner();
             if (isWinner) {
                     if (moveTracker % 2 === 1) {
+                        playerOneScore++;
                         displayResult(playerOneName);
                         resetBoard();
                         return;
 
                     }
                     else {
+                        playerTwoScore++;
                         displayResult(playerTwoName);
                         resetBoard();
                         return;
@@ -95,6 +104,16 @@ const gameBoard = (function () {
             }
         }
         displayController.resultDiv.textContent = `${winner} won the game`;
+        if (playerOneName === '') {
+            playerOneName = 'X';    
+        }
+        
+        if (playerTwoName === '') {
+            playerTwoName = 'O';
+        }
+
+        displayController.getScoreDivList()[0].textContent = `${playerOneName}: ${playerOneScore}`;
+        displayController.getScoreDivList()[1].textContent = `${playerTwoName}: ${playerTwoScore}`;
         displayController.showResult();
     };
 
@@ -106,7 +125,7 @@ const gameBoard = (function () {
         };
     };
 
-    return {board, getMoveTracker, makeMove, setPlayerNames, getPlayerNames, getResult, resetPlayerNames};
+    return {board, getMoveTracker, makeMove, setPlayerNames, getPlayerNames, resetPlayerNames, resetPlayerScores};
 })();
 
 const displayController = ( function () {
@@ -117,6 +136,7 @@ const displayController = ( function () {
     const formDialog = document.querySelector('.form-dialog');
     const resultDialog = document.querySelector('.result-dialog');
     const resultDiv = resultDialog.querySelector('.result');
+    const scoreDivList = resultDialog.querySelectorAll('.score');
     const resultCloseButton = resultDialog.querySelector('.close-button');
     const submitButton = formDialog.querySelector('.submit-button');
     const form = formDialog.querySelector('.form');
@@ -145,13 +165,19 @@ const displayController = ( function () {
         resultDialog.showModal();
     };
 
+    function getScoreDivList() {
+        const divList = scoreDivList;
+        return divList;
+    }
+
     resultCloseButton.addEventListener('click', () => {
         resultDialog.close();
     });
 
     resetButton.addEventListener('click', () => {
         gameBoard.resetPlayerNames();
+        gameBoard.resetPlayerScores();
     });
 
-    return {boardCells, resultDiv, showResult};
+    return {boardCells, resultDiv, showResult, getScoreDivList};
 })();

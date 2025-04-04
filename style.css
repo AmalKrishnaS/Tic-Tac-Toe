@@ -71,16 +71,16 @@ h1 {
 }
 
 .result-container {
+    width: 300px;
+    height: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .result {
     font-size: 3em;
-    width: 300px;
-    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
