@@ -37,6 +37,8 @@ const gameBoard = (function () {
     function makeMove(position) {
 
         if (board[position - 1] !== '') return;
+        
+        if (checkWinner()) return;
 
         if (gameBoard.getMoveTracker() % 2 === 0) {
             board[position - 1] = 'X';       
@@ -47,7 +49,7 @@ const gameBoard = (function () {
         displayController.boardCells[position - 1].textContent = board[position - 1];
 
         moveTracker++;
-        setTimeout(resultChecker, 300);
+        setTimeout(resultChecker, 1000);
     };
 
     function checkWinner() {
