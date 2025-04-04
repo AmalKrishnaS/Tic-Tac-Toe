@@ -89,7 +89,7 @@ const gameBoard = (function () {
     }
 
     function displayResult(winner) {
-        displayController.result.textContent = `${winner} won the game`;
+        displayController.resultDiv.textContent = `${winner} won the game`;
     }
 
     function resetGame() {
@@ -137,7 +137,5 @@ const displayController = ( function () {
         formDialog.close();       
     });
 
-
-
-    return {boardCells, result};
+    return {boardCells, resultDiv};
 })();
