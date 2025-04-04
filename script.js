@@ -18,6 +18,11 @@ const gameBoard = (function () {
         return {firstPlayerName, secondPlayerName};
     }
 
+    function resetPlayerNames() {
+        playerOneName = '';
+        playerTwoName = '';
+    }
+
     function getMoveTracker() {
         let gameMoveTracker = moveTracker;
         return gameMoveTracker;
@@ -63,20 +68,20 @@ const gameBoard = (function () {
                     if (moveTracker % 2 === 1) {
                         result = 'X';
                         displayResult(playerOneName);
-                        resetGame();
+                        resetBoard();
                         return;
 
                     }
                     else {
                         result = 'O';
                         displayResult(playerTwoName);
-                        resetGame();
+                        resetBoard();
                         return;
                     }
                  }
             else if (moveTracker === 9) {
                 result = 'draw';
-                resetGame();
+                resetBoard();
                 return;
             }
 
@@ -101,9 +106,7 @@ const gameBoard = (function () {
         displayController.showResult();
     }
 
-    function resetGame() {
-        player1 = '';
-        player2 = '';
+    function resetBoard() {
         moveTracker = 0;
         board.fill('');
         for (let i=0; i<board.length; i++) {
@@ -111,7 +114,7 @@ const gameBoard = (function () {
         };
     }
 
-    return {board, getMoveTracker, makeMove, setPlayerNames, getPlayerNames, getResult};
+    return {board, getMoveTracker, makeMove, setPlayerNames, getPlayerNames, getResult, resetPlayerNames};
 })();
 
 const displayController = ( function () {
@@ -152,6 +155,10 @@ const displayController = ( function () {
 
     resultCloseButton.addEventListener('click', () => {
         resultDialog.close();
+    })
+
+    resetButton.addEventListener('click', () => {
+        gameBoard.resetPlayerNames();
     })
 
     return {boardCells, resultDiv, showResult};
